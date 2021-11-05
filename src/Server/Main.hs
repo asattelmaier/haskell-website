@@ -19,3 +19,4 @@ import qualified Server.Controller as Controller (create)
 
 create :: Config -> IO ()
 create config = Snap.httpServe (Config.create config) Controller.create
+

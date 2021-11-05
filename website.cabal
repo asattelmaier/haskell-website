@@ -23,7 +23,8 @@ executable website
   other-modules:
     Server.Config,
     Server.Controller,
-    Server.Main
+    Server.Main,
+    Server.Service
 
   build-depends:
     base                 ==4.14.3.0,
