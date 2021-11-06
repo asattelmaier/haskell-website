@@ -17,3 +17,23 @@ cabal build
 cabal run
 ```
 
+## Docker
+
+### Build
+
+```bash
+docker image build -t asattelmaier/website:latest -f docker/Dockerfile .
+```
+
+### Run
+
+```bash
+docker run -p 8000:8000 --name website asattelmaier/website:latest
+```
+
+### Push
+
+```bash
+docker push asattelmaier/website:latest
+```
+

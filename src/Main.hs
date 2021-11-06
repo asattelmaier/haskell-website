@@ -21,3 +21,4 @@ parse :: [String] -> IO ()
 parse [host, port] = Server.create $ Server.Config (Just host) (Just port)
 parse [host]       = Server.create $ Server.Config (Just host) Nothing
 parse _            = Server.create $ Server.Config Nothing Nothing
+
