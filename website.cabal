@@ -23,12 +23,17 @@ executable website
   other-modules:
     Server.Config,
     Server.Controller,
+    Server.HttpClient,
     Server.Main,
     Server.Service
 
   build-depends:
     base                 ==4.14.3.0,
     bytestring           ==0.10.12.0,
+    connection           ==0.3.1,
+    http-client          ==0.7.9,
+    http-client-tls      ==0.3.5.3,
+    http-conduit         ==2.3.8,
     snap                 ==1.1.3.1,
     snap-core            ==1.0.4.2,
     snap-server          ==1.1.2.0,

@@ -10,17 +10,29 @@ module Server.Service
 
 
 ------------------------------------------------------------------------------
-import           Snap.Core           (Snap)
-import qualified Snap.Core           as Snap (redirect)
-import qualified Snap.Util.FileServe as Snap (serveFileAs)
+import qualified Control.Monad.IO.Class as IO (liftIO)
+import           Data.ByteString.Lazy   (ByteString)
+import           Snap.Core              (Snap)
+import qualified Snap.Core              as Snap (redirect, writeLBS)
+import           System.Environment
+
+
+
+------------------------------------------------------------------------------
+import qualified Server.HttpClient      as HttpClient (get)
 
 
 
 serveIndex :: Snap ()
-serveIndex = Snap.serveFileAs "text/plain" "README.md"
+serveIndex =  Snap.writeLBS =<< IO.liftIO requestIndex
 
 
 
 redirectToIndex :: Snap ()
 redirectToIndex = Snap.redirect "/"
+
+
+
+requestIndex :: IO ByteString
+requestIndex = HttpClient.get =<< getEnv "INDEX_RESOURCE_LOCATION"
 
