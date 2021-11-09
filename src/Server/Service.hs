@@ -24,7 +24,7 @@ import qualified Server.HttpClient      as HttpClient (get)
 
 
 serveIndex :: Snap ()
-serveIndex =  Snap.writeLBS =<< IO.liftIO requestIndex
+serveIndex = Snap.writeLBS =<< IO.liftIO requestIndex
 
 
 
