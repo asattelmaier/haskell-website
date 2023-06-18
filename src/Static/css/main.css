@@ -1,0 +1,43 @@
+@font-face {
+    font-family: 'TEX GYRE HEROS';
+    src: url('../font/texgyreheros-regular.woff2') format('woff2'), url('../font/texgyreheros-regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    font-display: swap;
+}
+
+body {
+    font-family: 'TEX GYRE HEROS';
+}
+
+main {
+    max-width: 1000px;
+    padding: 0 20px 20px;
+    margin: 38.2vh auto 0 auto;
+}
+
+h1, h2 {
+    font-weight: normal;
+    margin: 0;
+}
+
+h1 {
+    font-size: 18px;
+}
+
+h2 {
+    font-size: 16px;
+    color: #6b6b6b;
+}
+
+p {
+    max-width: 320px;
+    line-height: 26px;
+    text-align: justify;
+    word-break: break-word;
+}
+
+a {
+    color: #000;
+}
