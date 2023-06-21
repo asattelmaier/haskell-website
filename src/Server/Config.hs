@@ -1,40 +1,34 @@
 module Server.Config
-( Config (Config)
+( Config (..)
 , create
 ) where
 
 
 
-------------------------------------------------------------------------------
-import           Control.Monad                    ((<=<))
-import           Data.ByteString                  (ByteString)
-import qualified Data.ByteString.Char8            as B (pack)
-import           Snap.Core                        (Snap)
-import qualified Snap.Http.Server                 as Snap (Config,
-                                                           defaultConfig)
-import qualified Snap.Internal.Http.Server.Config as Snap (bind, port)
-import           Text.Read                        (readMaybe)
-
-
-
-data Config = Config { host :: Maybe String
-                     , port :: Maybe String
+data Config = Config { host         :: !String
+                     , port         :: !String
+                     , workingDir   :: !FilePath
+                     , staticDir    :: !FilePath
+                     , indexFile    :: !FilePath
+                     , notFoundFile :: !FilePath
                      }
 
 
 
-create :: Config -> Snap.Config Snap a
-create config = Snap.defaultConfig { Snap.port = getPort config
-                                   , Snap.bind = getHost config
-                                   }
+defaultConfig :: Config
+defaultConfig = Config
+  { host = "localhost"
+  , port = "8000"
+  , workingDir = "src"
+  , staticDir = "Static"
+  , indexFile = "index.html"
+  , notFoundFile = "404.html"
+  }
 
 
 
-getHost :: Config -> Maybe ByteString
-getHost = fmap B.pack . host
-
-
-
-getPort :: Config -> Maybe Int
-getPort = readMaybe <=< port
+create :: [String] -> Config
+create [h, p] = defaultConfig { host = h, port = p }
+create [h]    = defaultConfig { host = h }
+create _      = defaultConfig
 
