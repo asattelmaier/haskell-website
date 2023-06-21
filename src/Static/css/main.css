@@ -17,27 +17,45 @@ main {
     margin: 38.2vh auto 0 auto;
 }
 
-h1, h2 {
+h1, h2, h3 {
     font-weight: normal;
     margin: 0;
 }
 
 h1 {
-    font-size: 18px;
+    font-size: 20px;
 }
 
-h2 {
-    font-size: 16px;
+h2, h3 {
     color: #6b6b6b;
 }
 
+h2 {
+    font-size: 18px;
+}
+
+h3 {
+    font-size: 16px;
+}
+
 p {
+    margin: 0;
+    padding: 0;
     max-width: 320px;
     line-height: 26px;
     text-align: justify;
     word-break: break-word;
 }
 
+.spacing {
+    margin-top: 20px;
+}
+
+.left-align {
+    text-align: left;
+}
+
 a {
+    display: inline-block;
     color: #000;
 }
