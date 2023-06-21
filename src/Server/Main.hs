@@ -7,6 +7,7 @@ module Server.Main
 
 ------------------------------------------------------------------------------
 import qualified Snap.Http.Server  as Snap (httpServe)
+import           System.Directory  (setCurrentDirectory)
 
 
 
@@ -18,5 +19,7 @@ import qualified Server.Controller as Controller (create)
 
 
 create :: Config -> IO ()
-create config = Snap.httpServe (Config.create config) Controller.create
+create config =
+  setCurrentDirectory "src" >>
+  Snap.httpServe (Config.create config) Controller.create
 

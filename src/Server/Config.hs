@@ -37,3 +37,4 @@ getHost = fmap B.pack . host
 
 getPort :: Config -> Maybe Int
 getPort = readMaybe <=< port
+
