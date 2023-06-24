@@ -1,20 +1,17 @@
-FROM ubuntu:20.10
+FROM ubuntu:22.04@sha256:6120be6a2b7ce665d0cbddc3ce6eae60fe94637c6a66985312d1f02f63cc0bcd
 
 
 
 #==============================
 # Copy binary and assets
 #==============================
-# TODO: Find a better solution
-# for accessing the build
-# product.
-# Currently the location to the
-# build product can not be
-# configured.
-# See: https://github.com/haskell/cabal/issues/3545
-#==============================
-COPY dist-newstyle/build/x86_64-linux/ghc-8.10.7/website-0.1.0.0/x/website/build/website/website /opt/website/website
-COPY README.md /opt/website/README.md
+# TODO: Make the static directory configurable
+#   So that the files don't need to be placed
+#   in the src directory.
+COPY --chmod=500 dist-newstyle /opt/website/dist
+COPY src/Static /opt/website/src/Static
+RUN find /opt/website/dist -type f -executable -name "website" -exec cp {} /opt/website/src/website \;
+RUN rm -rf /opt/website/dist
 
 
 
@@ -23,9 +20,9 @@ COPY README.md /opt/website/README.md
 #==============================
 WORKDIR /opt/website
 
-RUN mkdir log \
-  && touch log/access.log \
-  && touch log/error.log
+RUN mkdir src/log \
+  && touch src/log/access.log \
+  && touch src/log/error.log
 
 
 
@@ -33,10 +30,8 @@ RUN mkdir log \
 # Create user
 #==============================
 RUN useradd -ms /bin/bash website \
-  && chown website log/access.log log/error.log website \
-  && chmod +x website
+  && chown -R website:website /opt/website
 
 USER website
 
-ENTRYPOINT ["./website"]
-
+ENTRYPOINT ["./src/website"]
