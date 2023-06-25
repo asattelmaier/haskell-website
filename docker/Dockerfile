@@ -5,12 +5,9 @@ FROM ubuntu:22.04@sha256:6120be6a2b7ce665d0cbddc3ce6eae60fe94637c6a66985312d1f02
 #==============================
 # Copy binary and assets
 #==============================
-# TODO: Make the static directory configurable
-#   So that the files don't need to be placed
-#   in the src directory.
 COPY --chmod=500 dist-newstyle /opt/website/dist
-COPY src/Static /opt/website/src/Static
-RUN find /opt/website/dist -type f -executable -name "website" -exec cp {} /opt/website/src/website \;
+COPY src/Static /opt/website/Static
+RUN find /opt/website/dist -type f -executable -name "website" -exec cp {} /opt/website/website \;
 RUN rm -rf /opt/website/dist
 
 
@@ -20,9 +17,9 @@ RUN rm -rf /opt/website/dist
 #==============================
 WORKDIR /opt/website
 
-RUN mkdir src/log \
-  && touch src/log/access.log \
-  && touch src/log/error.log
+RUN mkdir log \
+  && touch log/access.log \
+  && touch log/error.log
 
 
 
@@ -34,4 +31,4 @@ RUN useradd -ms /bin/bash website \
 
 USER website
 
-ENTRYPOINT ["./src/website"]
+ENTRYPOINT ["./website"]

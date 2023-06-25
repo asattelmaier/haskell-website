@@ -19,7 +19,7 @@ defaultConfig :: Config
 defaultConfig = Config
   { host = "localhost"
   , port = "8000"
-  , workingDir = "src"
+  , workingDir = "."
   , staticDir = "Static"
   , indexFile = "index.html"
   , notFoundFile = "404.html"
