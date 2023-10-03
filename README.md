@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-* ghc   >= 8.10.4
+* ghc == 9.4.4
 * cabal >= 1.10
 * [gcloud](https://cloud.google.com/sdk/docs/install#de )
 
@@ -32,7 +32,7 @@ docker image build -t eu.gcr.io/PROJECT_ID/website:latest -f docker/Dockerfile .
 ### Run
 
 ```bash
-docker run -e INDEX_RESOURCE_LOCATION='https://example.de' -p 8000:8000 --name website asattelmaier/website:latest
+docker run -p 8000:8000 --name website asattelmaier/website:latest
 ```
 
 ### Push
@@ -44,3 +44,15 @@ docker push asattelmaier/website:latest
 docker push eu.gcr.io/PROJECT_ID/website:latest
 ```
 
+## Update GHC Version
+
+When updating the GHC version in the project, make sure to follow these steps:
+
+1. Update the `ghc-version` field in the GitHub workflows.
+    - Open the `build.yaml` file located in the `.github/workflows` directory.
+    - Locate the `ghc-version` field and update it with the desired GHC version.
+
+2. Update the Prerequisites section in the README.md file.
+    - Open the README.md file.
+    - Locate the `Prerequisites` section.
+    - Update the GHC version mentioned in the prerequisites to reflect the newly installed GHC version.

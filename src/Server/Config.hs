@@ -19,7 +19,7 @@ defaultConfig :: Config
 defaultConfig = Config
   { host = "localhost"
   , port = "8000"
-  , workingDir = "."
+  , workingDir = "src"
   , staticDir = "Static"
   , indexFile = "index.html"
   , notFoundFile = "404.html"
@@ -28,7 +28,6 @@ defaultConfig = Config
 
 
 create :: [String] -> Config
-create [h, p] = defaultConfig { host = h, port = p }
-create [h]    = defaultConfig { host = h }
-create _      = defaultConfig
-
+create [h, p, w] = defaultConfig { workingDir = w, host = h, port = p }
+create [h, p]    = defaultConfig { host = h, port = p }
+create _         = defaultConfig

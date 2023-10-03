@@ -31,4 +31,4 @@ RUN useradd -ms /bin/bash website \
 
 USER website
 
-ENTRYPOINT ["./website"]
+ENTRYPOINT ["./website", "localhost", "8000", "."]
